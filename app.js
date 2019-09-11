@@ -8,19 +8,21 @@ const { add, sub } = require("./helper");
 const fs = require('fs')
 const filename = "target.txt"
 
-// sync programming
+const errHandler = err => console.log(err);
+const dataHandler = data => console.log(data.toString());
+
+/* sync programming
 const data = fs.readFileSync(filename);
 console.log(data.toString());
+*/
 
-/* Implement async programming
+// Implement async programming
 // fs.watch(filename, () => console.log('File changed'));
 fs.readFile(filename, (err, data) => {
-    if (err){
-        console.log(err);
-    } 
-    console.log(data.toString());
+    if (err) errHandler(err); 
+    dataHandler(data);
 });
-*/
+
 console.log("Node js async programming (non blocking event loop)....")
 
 // Use express to perform a web server
